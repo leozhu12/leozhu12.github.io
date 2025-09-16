@@ -5,13 +5,24 @@
     <title>Bouncing Box</title>
     <script src="jquery.min.js"></script>
     <style>
+      body {
+          background-image: url("../../images/cat.jpg"); 
+
+
+          background-color: #cccccc;
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+      }
       .box {
-        width: 70px;
-        height: 70px;
-        background-color: teal;
-        font-size: 300%;
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        font-size: 250%;
         text-align: center;
         user-select: none;
+        color: blue;
         display: block;
         position: absolute;
         top: 100px;
@@ -76,8 +87,8 @@
         let speedX  = 10;
         let positionY = 0;
         let speedY = 10;
-
-
+        let randNumX = Math.random() * 10;
+        let randNumY = Math.random() * 10;
         /**
          * This Function will be called 20 times/second.
          * Each time it is called, it should move the Box to a new location.
@@ -108,10 +119,11 @@
           positionX = 0;
           positionY = 0;
           points ++;
-          speed = 3 * points + 10;
+          speedX = 3 * points + 10;
           changeBoxText(points);
-
-
+           
+          randNumX = Math.random() * (boardWidth);
+          randNumY = Math.random() * (boardHeight);
         }
 
 
