@@ -9,7 +9,7 @@ var init = function (window) {
         view = app.view,
         fps = draw.fps('#000');
         
-    
+
     window.opspark.makeGame = function() {
         
         window.opspark.game = {};
@@ -25,11 +25,12 @@ var init = function (window) {
 
 
         // TODO 2 : Create a function that draws a circle 
-        function drawCircle(){
-            circle = draw.randomCircleInArea(canvas, true, true, "#999", 2);
-            physikz.addRandomVelocity(circle, canvas, 5, 5);
-            view.addChild(circle);
-            circles.push(circle);
+        function drawCircle() {
+            // this draws the circle
+            circle = draw.randomCircleInArea(canvas, true, true, "#999", 2); // This codes for the randomness of the circle by its size, color, and location.
+            physikz.addRandomVelocity(circle, canvas, 5, 5); // This code uses the physikz libary to add a velocity and direction for the circles.
+            view.addChild(circle); // This code makes sure the circles appear on screen.
+            circles.push(circle); // This saves the circles to an array of circles
         }
 
 
@@ -38,12 +39,12 @@ var init = function (window) {
         drawCircle();
         drawCircle();
         drawCircle();
-        drawCircle(); */
+        drawCircle(); */ //Repetative code to get circles on the screen
 
 
         // TODO 7 : Use a loop to create multiple circles
-        for (var i = 0; i < 25; i++) {
-            drawCircle(100);
+        for (var i = 0; i < 100; i++) { // Uses a for loop to create 100 circles. the 100 being the number of circles drawn. 
+            drawCircle(); // adds a single call to draw the circles
         }
 
 
@@ -63,19 +64,20 @@ var init = function (window) {
             physikz.updatePosition(circles[1]);
             physikz.updatePosition(circles[2]);
             physikz.updatePosition(circles[3]);
-            physikz.updatePosition(circles[4]); */
+            physikz.updatePosition(circles[4]); */ //Repetitive code to update the positions of the circles in the array. 
             
             // TODO 5 : Call game.checkCirclePosition() on your circles
             /* game.checkCirclePosition(circles[0]);
             game.checkCirclePosition(circles[1]);
             game.checkCirclePosition(circles[2]);
             game.checkCirclePosition(circles[3]);
-            game.checkCirclePosition(circles[4]); */
+            game.checkCirclePosition(circles[4]); */ //Repetitive code to make circles that move off the screen reappear on the other side (right side).
 
             // TODO 8 / TODO 9 : Iterate over the array
-           for (var i = 0; i < circles.length; i++) {
-            physikz.updatePosition(i);
-            game.checkCirclePosition(i);
+           for (var i = 0; i < circles.length; i++) { // the full loop that makes sure the circles shows up. This structure ensures that every circle in the array is updated one at a time.
+            physikz.updatePosition(circles[i]); // Uses the physikz to update the position of every circle thay pops up
+            game.checkCirclePosition(circles[i]); // This checks the position of the circles and make sure it appears again. 
+           }
         }
     
         /* 
@@ -91,16 +93,15 @@ var init = function (window) {
             }
             
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-            if (circle.x = 0){
-                circle.x = canvas.width
+            if ( circle.x < 0 ){ // If the circle moves off the left side of the screen it will reappear on the opposite side
+                circle.x = canvas.width; // sets the horizontal value of x of a circle to be the same as the width of the canvas.
             }
-            if (circle.y > canvas.height){
-                circle.y = 0;
+            if ( circle.y > canvas.height ){ // If the cirle has moved beyond the bottom of the canvas height it will reappear.
+                circle.y = 0; // This checks if the y value or the vertical value is equal to the value of the canvas and makes sure it shows up on the screen.
              } 
-            if (circle.y = 0){
-                circle.y = canvas.height
+            if ( circle.y < 0 ){ // If the cirle moves off the top side of the screen it will reappear on the opposite side
+                circle.y = canvas.height; // sets the vertical value of y of a cirlce to be the same height of the canvas.
              }  
-
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
         }
         
