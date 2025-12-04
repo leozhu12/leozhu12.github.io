@@ -15,9 +15,15 @@ var makeLevelData = function (window) {
         number: 1,
         speed: -3,
         gameItems: [
-          { type: "obstacle", x: 400, y: groundY - 110, damage: 10},
-          { type: "obstacle", x: 600, y: groundY - 110, damage: 50 },
-          { type: "obstacle", x: 800, y: groundY - 110, damage: 100 },
+          { type: "obstacle", x: 400, y: groundY - 110, damage: 10, rotation: 0, image: "img/spikes.png", hitZone: 25, },
+          { type: "obstacle", x: 600, y: groundY - 110, damage: 50, rotation: 0 },
+          { type: "obstacle", x: 800, y: groundY - 110, damage: 100, rotation: 0},
+          { type: "enemy", x: 400, y: groundY - 50},
+          { type: "enemy", x: 600, y: groundY - 50},
+          { type: "reward", x: 300, y: groundY - 150},
+          { type: "reward", x: 700, y: groundY - 150},
+          { type: "reward", x: 900, y: groundY - 150},
+          { type: "level", x: 1000, y: groundY - 100},
         ],
       },
       {
