@@ -14,12 +14,12 @@ var makeLevelData = function (window) {
         name: "Robot Romp",
         number: 1,
         speed: -3,
-        gameItems: [
-          { type: "obstacle", x: 400, y: groundY - 110, damage: 10, rotation: 0, image: "img/spikes.png", hitZone: 25, },
-          { type: "obstacle", x: 600, y: groundY - 110, damage: 50, rotation: 0 },
-          { type: "obstacle", x: 800, y: groundY - 110, damage: 100, rotation: 0},
-          { type: "enemy", x: 400, y: groundY - 50},
-          { type: "enemy", x: 600, y: groundY - 50},
+        gameItems: [ //x, y, image, offsetX, offsetY, velocity
+          { type: "obstacle", x: 400, y: groundY - 0, damage: 10,  hitZone: 25, rotation: 0, offsetX: -30, offsetY: -30, image: "img/spikes.png", scaleX: 0.05, scaleY: 0.05},
+          { type: "obstacle", x: 600, y: groundY - 70, damage: 50, hitZone: 25, rotation: 0, offsetX: -30, offsetY: -30, image: "img/spikes.png", scaleX: 0.05, scaleY: 0.05},
+          { type: "obstacle", x: 800, y: groundY - 50, damage: 100, hitZone: 25, rotation: 0, offsetX: -30, offsetY: -30, image: "img/spikes.png", scaleX: 0.05, scaleY: 0.05},
+          { type: "enemy", x: 600, y: groundY - 50, image:"img/goblin.png", offsetX: -40, offsetY: -50, velocity: 3, scaleX: 0.5, scaleY: 0.5},
+          { type: "enemy", x: 1200, y: groundY - 50, image:"img/goblin.png", offsetX: -40, offsetY: -50, velocity: 5, scaleX: 0.5, scaleY: 0.5},
           { type: "reward", x: 300, y: groundY - 150},
           { type: "reward", x: 700, y: groundY - 150},
           { type: "reward", x: 900, y: groundY - 150},

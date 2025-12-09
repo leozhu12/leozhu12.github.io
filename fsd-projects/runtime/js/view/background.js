@@ -41,7 +41,12 @@ var background = function (window) {
             // you should modify both the height and color to suit your game
             var backgroundFill = draw.rect(canvasWidth,groundY,'blue'); // draws a rectangle and stores it inside background fill
             background.addChild(backgroundFill); // adds the backgroundfill to the background
-            
+            //var backgroundImage = draw.bitmap("img/runtimebg.jpg");
+            //backgroundImage.x = 0;
+           // backgroundImage.y = 0;
+          //  backgroundImage.scaleX = 1;
+         //   backgroundImage.scaleY = 0.40;            
+           // background.addChild(backgroundImage);//
             // TODO 2: - Add a moon and starfield
             for(var i = 0; i < 50; i++){
                 var circle = draw.circle(10, "white", "LightGray", 2); //creates a circle with a specificed radius, border color, fill color, alpha, and stores it in the variable circle. 

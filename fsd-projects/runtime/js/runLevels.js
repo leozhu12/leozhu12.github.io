@@ -19,32 +19,33 @@ var runLevels = function (window) {
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
     function createObstacle(x, y, damage, hitZone, rotation, offsetX, offsetY, image, scaleX, scaleY){
-    var hitZoneSize = hitZone; //sets the collide size
-    var damageFromObstacle = damage; //damage taken when collision happens
-    var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); //creates the hitzone and creates the collsion to take the damnge
-    obstacleHitZone.x = x; // sets the obsticle X position
-    obstacleHitZone.y = y; // sets the obsticle y position
-    game.addGameItem(obstacleHitZone); //adds the color to the playfield 
-    var obstacleImage = draw.bitmap(image); //draws the bitmap and stores it as an obsticle image
-    obstacleHitZone.addChild(obstacleImage); //takes the picture and add it has a child to the hitzone
-    obstacleImage.x = offsetX; //offsets the picture fron the hitzone
-    obstacleImage.y = offsetX; // offsets the obsticle image vertically
-    obstacleImage.scaleX = scaleX;
-    obstacleImage.scaleX = scaleY;
-     obstacleHitZone.rotationalVelocity = rotation;
+      var hitZoneSize = hitZone; //sets the collide size
+      var damageFromObstacle = damage; //damage taken when collision happens
+      var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); //creates the hitzone and creates the collsion to take the damnge
+      obstacleHitZone.x = x; // sets the obsticle X position
+      obstacleHitZone.y = y; // sets the obsticle y position
+      game.addGameItem(obstacleHitZone); //adds the color to the playfield 
+      var obstacleImage = draw.bitmap(image); //draws the bitmap and stores it as an obsticle image
+      obstacleHitZone.addChild(obstacleImage); //takes the picture and add it has a child to the hitzone
+      obstacleImage.x = offsetX; //offsets the picture fron the hitzone
+      obstacleImage.y = offsetY; // offsets the obsticle image vertically
+      obstacleImage.scaleX = scaleX;
+      obstacleImage.scaleY = scaleY;
+      obstacleHitZone.rotationalVelocity = rotation;
     }
 
-  function createEnemy(x, y){
+  function createEnemy(x, y, image, offsetX, offsetY, velocity, scaleX, scaleY){
        var enemy = game.createGameItem("enemy", 25); //creates a hitzone and stores it to the variable enemy
-    var enemyImage = draw.rect(50, 50, "red"); //create the image of the enemy and it stores it to the enemyImage
-    enemyImage.x = -25; // offsets from image to hitzone (left to right)
-    enemyImage.y = -25; // offset from image to hitzone (veritcally)
+    var enemyImage = draw.bitmap(image); //create the image of the enemy and it stores it to the enemyImage
+    enemyImage.x = offsetX; // offsets from image to hitzone (left to right)
+    enemyImage.y = offsetY; // offset from image to hitzone (veritcally)
     enemy.addChild(enemyImage); // attaches the enemy imagine to the object
     enemy.x = x; //setting the x enemy position
     enemy.y = y; //setting the y enemy position
     game.addGameItem(enemy); // adding the enemy to the game
-
-    enemy.velocityX -= 3; // animated your enemy
+    enemyImage.scaleX = scaleX;
+    enemyImage.scaleY = scaleY;
+    enemy.velocityX -= velocity; // animated your enemy
 
     //handles when Halle collides with enemy 
     enemy.onPlayerCollision = function(){
@@ -107,13 +108,10 @@ var runLevels = function (window) {
         var element = levelObjects[i];
 
         if(element.type === "obstacle"){
-          createObstacle(element.x, element.y, element.damage, element.hitZone, element.rotation, element.image);
-        }
+          createObstacle(element.x, element.y, element.damage, element.hitZone, element.rotation, element.offsetX, element.offsetY, element.image, element.scaleX, element.scaleY);
+        } 
          if(element.type === "enemy"){
-          createEnemy(element.x, element.y);
-        }
-        if(element.type === "enemy"){
-          createEnemy(element.x, element.y);
+          createEnemy(element.x, element.y, element.image, element.offsetX, element.offsetY, element.velocity, element.scaleX, element.scaleY);
         }
         if(element.type === "reward"){
           createReward(element.x, element.y);
