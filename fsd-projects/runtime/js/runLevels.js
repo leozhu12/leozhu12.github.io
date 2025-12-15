@@ -14,7 +14,7 @@ var runLevels = function (window) {
     var levelData = window.opspark.levelData;
 
     // set this to true or false depending on if you want to see hitzones
-    game.setDebugMode(true);
+    game.setDebugMode(false);
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
@@ -61,7 +61,7 @@ var runLevels = function (window) {
     }
   };
 
-  function createReward(x, y, hitZone, image, velocity, offsetX, offsetY, scaleX, scaleY){
+  function createReward(x, y, hitZone, image, velocity, offsetX, offsetY, scaleX, scaleY, healthIncrease, score){
        var reward = game.createGameItem("reward", hitZone); //creates a hitzone and stores it to the variable reward
     var rewardImage = draw.bitmap(image); //create the image of the reward and it stores it to the rewardImage
     rewardImage.x = offsetX; // offsets from image to hitzone (left to right)
@@ -77,22 +77,25 @@ var runLevels = function (window) {
 
     //handles when Halle collides with reward 
     reward.onPlayerCollision = function(){
-      game.changeIntegrity(10); //increases player health 
+      game.changeIntegrity(healthIncrease); //increases player health 
+      game.increaseScore(score); //increases the players score if hit
       reward.fadeOut();
     }
   };
 
-  function createlevelMarker(x, y){
-    var levelMarker = game.createGameItem("level", 25); //creates a hitzone and stores it to the variable reward
-    var levelImage = draw.rect(50, 50, "yellow"); //create the image of the reward and it stores it to the rewardImage
-    levelImage.x = -25; // offsets from image to hitzone (left to right)
-    levelImage.y = -25; // offset from image to hitzone (veritcally)
+  function createlevelMarker(x, y, image, hitZone, velocity, setoffX, setoffY, scaleX, scaleY){
+    var levelMarker = game.createGameItem("level", hitZone); //creates a hitzone and stores it to the variable reward
+    var levelImage = draw.bitmap(image); //create the image of the reward and it stores it to the rewardImage
+    levelImage.x = setoffX; // offsets from image to hitzone (left to right)
+    levelImage.y = setoffY; // offset from image to hitzone (veritcally)
     levelMarker.addChild(levelImage); // attaches the reward imagine to the object
     levelMarker.x = x; //setting the x reward position
     levelMarker.y = y; //setting the y reward position
+    levelImage.scaleX = scaleX; // X scale of the enemy 
+    levelImage.scaleY = scaleY;
     game.addGameItem(levelMarker); // adding the reward to the game
 
-    levelMarker.velocityX -= 3; // animated your reward
+    levelMarker.velocityX -= velocity; // animated your reward
 
     //handles when Halle collides with reward 
     levelMarker.onPlayerCollision = function(){
@@ -116,10 +119,10 @@ var runLevels = function (window) {
           createEnemy(element.x, element.y, element.image, element.offsetX, element.offsetY, element.velocity, element.scaleX, element.scaleY, element.hitZone, element.damage, element.score);
         }
         if(element.type === "reward"){
-          createReward(element.x, element.y, element.hitZone, element.image, element.velocity, element.offsetX, element.offsetY, element.scaleX, element.scaleY);
+          createReward(element.x, element.y, element.hitZone, element.image, element.velocity, element.offsetX, element.offsetY, element.scaleX, element.scaleY, element.healthIncrease, element.score);
         }
         if(element.type === "level"){
-          createlevelMarker(element.x, element.y);
+          createlevelMarker(element.x, element.y, element.image, element.hitZone, element.velocity, element.setoffX, element.setoffY, element.scaleX, element.scaleY);
         }
       }
 
