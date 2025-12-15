@@ -29,9 +29,9 @@ var runLevels = function (window) {
       obstacleHitZone.addChild(obstacleImage); //takes the picture and add it has a child to the hitzone
       obstacleImage.x = offsetX; //offsets the picture fron the hitzone
       obstacleImage.y = offsetY; // offsets the obsticle image vertically
-      obstacleImage.scaleX = scaleX;
-      obstacleImage.scaleY = scaleY;
-      obstacleHitZone.rotationalVelocity = rotation;
+      obstacleImage.scaleX = scaleX; // x scale of the obstacle
+      obstacleImage.scaleY = scaleY; // y scale of the obstacle
+      obstacleHitZone.rotationalVelocity = rotation; // rotation of the obsticle
     }
 
   function createEnemy(x, y, image, offsetX, offsetY, velocity, scaleX, scaleY, hitZone, damage, score){
@@ -69,8 +69,8 @@ var runLevels = function (window) {
     reward.addChild(rewardImage); // attaches the reward imagine to the object
     reward.x = x; //setting the x reward position
     reward.y = y; //setting the y reward position
-    rewardImage.scaleX = scaleX; // X scale of the enemy 
-    rewardImage.scaleY = scaleY; // y scale of the enemy 
+    rewardImage.scaleX = scaleX; // X scale of the reward
+    rewardImage.scaleY = scaleY; // y scale of the reward
     game.addGameItem(reward); // adding the reward to the game
 
     reward.velocityX -= velocity; // animated your reward
@@ -84,20 +84,20 @@ var runLevels = function (window) {
   };
 
   function createlevelMarker(x, y, image, hitZone, velocity, setoffX, setoffY, scaleX, scaleY){
-    var levelMarker = game.createGameItem("level", hitZone); //creates a hitzone and stores it to the variable reward
-    var levelImage = draw.bitmap(image); //create the image of the reward and it stores it to the rewardImage
+    var levelMarker = game.createGameItem("level", hitZone); //creates a hitzone and stores it to the variable levelMarker
+    var levelImage = draw.bitmap(image); //create the image of the levelmarker and it stores it to the levelImage
     levelImage.x = setoffX; // offsets from image to hitzone (left to right)
     levelImage.y = setoffY; // offset from image to hitzone (veritcally)
-    levelMarker.addChild(levelImage); // attaches the reward imagine to the object
-    levelMarker.x = x; //setting the x reward position
-    levelMarker.y = y; //setting the y reward position
-    levelImage.scaleX = scaleX; // X scale of the enemy 
-    levelImage.scaleY = scaleY;
-    game.addGameItem(levelMarker); // adding the reward to the game
+    levelMarker.addChild(levelImage); // attaches the level imagine to the object
+    levelMarker.x = x; //setting the x level position
+    levelMarker.y = y; //setting the y level position
+    levelImage.scaleX = scaleX; // X scale of the level
+    levelImage.scaleY = scaleY; // y scale of the level
+    game.addGameItem(levelMarker); // adding the level to the game
 
-    levelMarker.velocityX -= velocity; // animated your reward
+    levelMarker.velocityX -= velocity; // animated your level
 
-    //handles when Halle collides with reward 
+    //handles when Halle collides with level
     levelMarker.onPlayerCollision = function(){
       levelMarker.fadeOut();
       startLevel();
