@@ -41,18 +41,18 @@ var background = function (window) {
             // you should modify both the height and color to suit your game
            // var backgroundFill = draw.rect(canvasWidth,groundY,'blue'); // draws a rectangle and stores it inside background fill
             //background.addChild(backgroundFill); // adds the backgroundfill to the background
-            var backgroundImage2 = draw.bitmap("img/images.png");
-            backgroundImage2.x = 0;
-            backgroundImage2.y = 0;
-            backgroundImage2.scaleX = 5;
-            backgroundImage2.scaleY = 7.5;            
-            background.addChild(backgroundImage2);
-            var backgroundImage = draw.bitmap("img/background jungle.png");
-            backgroundImage.x = 0;
-            backgroundImage.y = 0;
-            backgroundImage.scaleX = 1.75;
-            backgroundImage.scaleY = .75;            
-            background.addChild(backgroundImage);
+            var backgroundImage2 = draw.bitmap("img/images.png"); // bottom image of the background
+            backgroundImage2.x = 0; // x level of the image
+            backgroundImage2.y = 0; // y level of the image
+            backgroundImage2.scaleX = 5; // x size of the image
+            backgroundImage2.scaleY = 7.5; // y size of the image     
+            background.addChild(backgroundImage2); // this allows the picture to show up
+            var backgroundImage = draw.bitmap("img/background jungle.png"); // top image of the background
+            backgroundImage.x = 0; // x level of the image
+            backgroundImage.y = 0; // y level of the image
+            backgroundImage.scaleX = 1.75; // x size of the image
+            backgroundImage.scaleY = .75; // y size of the image       
+            background.addChild(backgroundImage); // this a;;pws the picture to show up
             
 
             // TODO 2: - Add a moon and starfield
